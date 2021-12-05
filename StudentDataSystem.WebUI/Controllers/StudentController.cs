@@ -68,5 +68,40 @@ namespace StudentDataSystem.WebUI.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult UpdateStudent(int id)
+        {
+            if(id!=null)
+            {
+                Student students = new Student();
+                students = _context.Set<Student>().Where(x => x.Id == id).FirstOrDefault();
+                return View(students);
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdateStudent(Student model)
+        {
+            if(model!=null)
+            {
+                Student student = new Student();
+                student.Address = model.Address;
+                student.Id = model.Id;
+                student.BirthDate = model.BirthDate;
+                student.BloodType = model.BloodType;
+                student.Department = model.Department;
+                student.Email = model.Email;
+                student.HesCode = model.HesCode;
+                student.IdentityNumber = model.IdentityNumber;
+                student.Name = model.Name;
+                student.PhoneNumber = model.PhoneNumber;
+                student.StudentNumber = model.StudentNumber;
+                student.Surname = model.Surname;
+                _context.Students.Update(student);
+                _context.SaveChanges();
+            }
+          
+
+            return View();
+        }
     }
 }
