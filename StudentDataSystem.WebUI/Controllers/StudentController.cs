@@ -44,7 +44,6 @@ namespace StudentDataSystem.WebUI.Controllers
 
             if (model != null)
             {
-
                 Student student = new Student();
                 student.Address = model.Address;
                 student.BirthDate = model.BirthDate;
@@ -70,18 +69,14 @@ namespace StudentDataSystem.WebUI.Controllers
         }
         public IActionResult UpdateStudent(int id)
         {
-            if(id!=null)
-            {
-                Student students = new Student();
-                students = _context.Set<Student>().Where(x => x.Id == id).FirstOrDefault();
-                return View(students);
-            }
-            return View();
+            Student students = new Student();
+            students = _context.Set<Student>().Where(x => x.Id == id).FirstOrDefault();
+            return View(students);
         }
         [HttpPost]
         public IActionResult UpdateStudent(Student model)
         {
-            if(model!=null)
+            if (model != null)
             {
                 Student student = new Student();
                 student.Address = model.Address;
@@ -99,7 +94,7 @@ namespace StudentDataSystem.WebUI.Controllers
                 _context.Students.Update(student);
                 _context.SaveChanges();
             }
-          
+
 
             return View();
         }
