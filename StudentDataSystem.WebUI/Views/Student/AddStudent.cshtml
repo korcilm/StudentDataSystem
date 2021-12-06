@@ -18,12 +18,10 @@
                     <!--begin::Header-->
                     <div class="card-header py-3">
                         <div class="card-title align-items-start flex-column">
-                            <h3 class="card-label font-weight-bolder text-dark">Personal Information</h3>
-                            <span class="text-muted font-weight-bold font-size-sm mt-1">Update your personal informaiton</span>
+                            <h3 class="card-label font-weight-bolder text-dark">Kişi Bilgisi</h3>
                         </div>
                         <div class="card-toolbar">
                             <input type="submit" value="Kaydet" class="btn btn-success mr-2"/>
-                            <button type="reset" class="btn btn-secondary">Cancel</button>
                         </div>
                     </div>
                     <!--begin::Body-->
@@ -34,6 +32,12 @@
                             <label class="col-xl-3 col-lg-3 col-form-label">Kimlik No</label>
                             <div class="col-lg-9 col-xl-6">
                                 <input class="form-control form-control-lg form-control-solid" type="text" asp-for="IdentityNumber" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Şifre</label>
+                            <div class="col-lg-9 col-xl-6">
+                                <input class="form-control form-control-lg form-control-solid" type="text" asp-for="Password" />
                             </div>
                         </div>
                         <div class="form-group row">

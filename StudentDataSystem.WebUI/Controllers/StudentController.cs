@@ -46,6 +46,7 @@ namespace StudentDataSystem.WebUI.Controllers
             {
                 Student student = new Student();
                 student.Address = model.Address;
+                student.Password = model.Password;
                 student.BirthDate = model.BirthDate;
                 student.BloodType = model.BloodType;
                 student.Department = model.Department;
@@ -88,6 +89,7 @@ namespace StudentDataSystem.WebUI.Controllers
                 student.HesCode = model.HesCode;
                 student.IdentityNumber = model.IdentityNumber;
                 student.Name = model.Name;
+                student.Password = model.Password;
                 student.PhoneNumber = model.PhoneNumber;
                 student.StudentNumber = model.StudentNumber;
                 student.Surname = model.Surname;

@@ -17,7 +17,6 @@ namespace StudentDataSystem.WebUI.Controllers
         }
         public IActionResult Index()
         {
-
             List<Personal> personals = new List<Personal>();
             personals = _context.Set<Personal>().ToList();
             if (personals != null)
