@@ -1,11 +1,8 @@
 ﻿@model List<GradeListViewModel>
-
-
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 
 <div class="d-flex flex-column-fluid">
@@ -26,7 +23,7 @@
                             <th scope="col">Öğrenci adı</th>
                             <th scope="col">Vize</th>
                             <th scope="col">Final</th>
-
+                        
                             <th scope="col">Düzenle</th>
                             <th scope="col">Sil</th>
                         </tr>
@@ -43,7 +40,7 @@
                                 <td>@item.StudentName</td>
                                 <td>@item.Midterm</td>
                                 <td>@item.Final</td>
-
+                         
                                 <td>
                                     <a asp-controller="Student" asp-action="UpdateStudent" asp-route-id="@item.Id" class="label label-inline label-light-warning font-weight-bold cursor-pointer">
                                         Düzenle

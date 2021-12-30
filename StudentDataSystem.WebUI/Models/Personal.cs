@@ -21,5 +21,6 @@ namespace StudentDataSystem.WebUI.Models
         public string HesCode { get; set; }
         public int RoleId { get; set; }=1;
         public Role Role { get; set; }
+        public List<Grade> Grades { get; set; }
     }
 }

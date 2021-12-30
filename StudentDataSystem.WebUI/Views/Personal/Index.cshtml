@@ -1,8 +1,25 @@
-﻿
+﻿@model List<Lesson>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+
+<div class="container">
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card bg-light-danger p-2">
+                    <span>@item.Name</span>
+                    <span><a asp-action="Index" asp-controller="Grade" asp-route-id="@item.Id"  class="btn btn-primary">Göster</a></span>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentDataSystem.WebUI.DataAccess;
 
 namespace StudentDataSystem.WebUI.Migrations
 {
     [DbContext(typeof(StudentDataSystemContext))]
-    partial class StudentDataSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20211230175649_add_lesson_table")]
+    partial class add_lesson_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace StudentDataSystem.WebUI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("StudentDataSystem.WebUI.Models.Grade", b =>
+            modelBuilder.Entity("StudentDataSystem.WebUI.Models.Lesson", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,13 +31,16 @@ namespace StudentDataSystem.WebUI.Migrations
                     b.Property<double>("Final")
                         .HasColumnType("float");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Midterm")
                         .HasColumnType("float");
 
-                    b.Property<int>("PersonalId")
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PersonalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonelId")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentId")
@@ -43,26 +48,9 @@ namespace StudentDataSystem.WebUI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LessonId");
-
                     b.HasIndex("PersonalId");
 
                     b.HasIndex("StudentId");
-
-                    b.ToTable("Grade");
-                });
-
-            modelBuilder.Entity("StudentDataSystem.WebUI.Models.Lesson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
 
                     b.ToTable("Lesson");
                 });
@@ -185,22 +173,14 @@ namespace StudentDataSystem.WebUI.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("StudentDataSystem.WebUI.Models.Grade", b =>
+            modelBuilder.Entity("StudentDataSystem.WebUI.Models.Lesson", b =>
                 {
-                    b.HasOne("StudentDataSystem.WebUI.Models.Lesson", "Lesson")
-                        .WithMany("Grades")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("StudentDataSystem.WebUI.Models.Personal", "Personal")
-                        .WithMany("Grades")
-                        .HasForeignKey("PersonalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Lessons")
+                        .HasForeignKey("PersonalId");
 
                     b.HasOne("StudentDataSystem.WebUI.Models.Student", "Student")
-                        .WithMany("Grades")
+                        .WithMany("Lessons")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

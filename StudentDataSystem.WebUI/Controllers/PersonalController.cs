@@ -8,47 +8,38 @@ using System.Threading.Tasks;
 
 namespace StudentDataSystem.WebUI.Controllers
 {
-    public class PersonalController:Controller
+    public class PersonalController : Controller
     {
         private readonly StudentDataSystemContext _context;
         public PersonalController(StudentDataSystemContext context)
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            List<Personal> personals = new List<Personal>();
-            personals = _context.Set<Personal>().ToList();
-            if (personals != null)
+            Personal personal = new Personal();
+            List<Grade> grades = new List<Grade>();
+            List<Lesson> lessons = new List<Lesson>();
+            Lesson lesson = new Lesson();
+            personal = _context.Set<Personal>().Where(x => x.Id == id).FirstOrDefault();
+            grades = _context.Set<Grade>().ToList();
+            foreach (var item in grades)
             {
-                return View(personals);
+                if (item.PersonalId == id)
+                {
+                    lesson = _context.Set<Lesson>().Where(x => x.Id == item.LessonId).FirstOrDefault();
+                    if (!lessons.Contains(lesson))
+                    {
+                        lessons.Add(lesson);
+                    };
+                    
+                }
             }
-            else
-            {
-                return View();
-            }
+
+            return View(lessons);
+
         }
-        public IActionResult AddPersonal(Personal model)
-        {
-            if (model != null)
-            {
-                Personal personal = new Personal();
-                personal.Address = model.Address;
-                personal.Password = model.Password;
-                personal.BirthDate = model.BirthDate;
-                personal.BloodType = model.BloodType;
-                personal.Department = model.Department;
-                personal.Email = model.Email;
-                personal.HesCode = model.HesCode;
-                personal.IdentityNumber = model.IdentityNumber;
-                personal.Name = model.Name;
-                personal.PhoneNumber = model.PhoneNumber;
-                personal.Surname = model.Surname;
-                _context.Personals.Add(personal);
-                _context.SaveChanges();
-            }
-            return View();
-        }
+
 
     }
 }

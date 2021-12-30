@@ -9,8 +9,8 @@ namespace StudentDataSystem.WebUI.Models
     {
         public int Id { get; set; }
         public string RoleName { get; set; }
-        public Student Student { get; set; }
-        public Personal Personal { get; set; }
+        public List<Student> Students { get; set; }
+        public List<Personal> Personals { get; set; }
 
     }
 }

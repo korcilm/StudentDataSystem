@@ -25,7 +25,29 @@ namespace StudentDataSystem.WebUI.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult Register(Personal model)
+        {
+            if (model != null)
+            {
+                Personal personal = new Personal();
+                personal.Address = model.Address;
+                personal.Password = model.Password;
+                personal.BirthDate = model.BirthDate;
+                personal.BloodType = model.BloodType;
+                personal.Department = model.Department;
+                personal.Email = model.Email;
+                personal.HesCode = model.HesCode;
+                personal.IdentityNumber = model.IdentityNumber;
+                personal.Name = model.Name;
+                personal.PhoneNumber = model.PhoneNumber;
+                personal.Surname = model.Surname;
+                personal.RoleId = 1;
+                _context.Personals.Add(personal);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public IActionResult SignIn(SignInViewModel signInViewModel)
         {
@@ -45,7 +67,7 @@ namespace StudentDataSystem.WebUI.Controllers
                     {
                         if(item.IdentityNumber == signInViewModel.IdentityNumber && item.Password == signInViewModel.Password)
                         {
-                            return RedirectToAction("Index","Student");
+                            return RedirectToAction("Index","Student", new { id = item.Id });
                         }
                        
                     }
@@ -56,7 +78,7 @@ namespace StudentDataSystem.WebUI.Controllers
                     {
                         if (item.IdentityNumber == signInViewModel.IdentityNumber && item.Password == signInViewModel.Password)
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Personal",new { id = item.Id });
                         }
 
                     }

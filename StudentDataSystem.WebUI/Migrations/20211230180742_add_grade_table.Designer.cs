@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentDataSystem.WebUI.DataAccess;
 
 namespace StudentDataSystem.WebUI.Migrations
 {
     [DbContext(typeof(StudentDataSystemContext))]
-    partial class StudentDataSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20211230180742_add_grade_table")]
+    partial class add_grade_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,10 @@ namespace StudentDataSystem.WebUI.Migrations
                     b.Property<double>("Midterm")
                         .HasColumnType("float");
 
-                    b.Property<int>("PersonalId")
+                    b.Property<int?>("PersonalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonelId")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentId")
@@ -195,9 +200,7 @@ namespace StudentDataSystem.WebUI.Migrations
 
                     b.HasOne("StudentDataSystem.WebUI.Models.Personal", "Personal")
                         .WithMany("Grades")
-                        .HasForeignKey("PersonalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PersonalId");
 
                     b.HasOne("StudentDataSystem.WebUI.Models.Student", "Student")
                         .WithMany("Grades")
