@@ -27,6 +27,8 @@ namespace StudentDataSystem.WebUI.DataAccess
 
         public DbSet<Personal> Personals { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        
        
     }
 }

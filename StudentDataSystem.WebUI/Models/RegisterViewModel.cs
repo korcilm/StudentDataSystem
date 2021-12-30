@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace StudentDataSystem.WebUI.Models
 {
-    public class Student
+    public class RegisterViewModel
     {
-
         public int Id { get; set; }
         public string Password { get; set; }
         public string IdentityNumber { get; set; }
@@ -21,8 +20,7 @@ namespace StudentDataSystem.WebUI.Models
         public string BloodType { get; set; }
         public DateTime BirthDate { get; set; }
         public string HesCode { get; set; }
-        public int RoleId { get; set; } = 2;
+        public int RoleId { get; set; }
         public Role Role { get; set; }
-
     }
 }

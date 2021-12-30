@@ -28,6 +28,27 @@ namespace StudentDataSystem.WebUI.Controllers
                 return View();
             }
         }
+        public IActionResult AddPersonal(Personal model)
+        {
+            if (model != null)
+            {
+                Personal personal = new Personal();
+                personal.Address = model.Address;
+                personal.Password = model.Password;
+                personal.BirthDate = model.BirthDate;
+                personal.BloodType = model.BloodType;
+                personal.Department = model.Department;
+                personal.Email = model.Email;
+                personal.HesCode = model.HesCode;
+                personal.IdentityNumber = model.IdentityNumber;
+                personal.Name = model.Name;
+                personal.PhoneNumber = model.PhoneNumber;
+                personal.Surname = model.Surname;
+                _context.Personals.Add(personal);
+                _context.SaveChanges();
+            }
+            return View();
+        }
 
     }
 }

@@ -20,7 +20,12 @@ namespace StudentDataSystem.WebUI.Controllers
         public IActionResult Index()
         {
             return View();
-        } 
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SignIn(SignInViewModel signInViewModel)
         {
@@ -32,7 +37,6 @@ namespace StudentDataSystem.WebUI.Controllers
             personals = _context.Set<Personal>().ToList();
 
 
-
             if (signInViewModel!=null)
             {
                 if(students!=null)
@@ -41,7 +45,7 @@ namespace StudentDataSystem.WebUI.Controllers
                     {
                         if(item.IdentityNumber == signInViewModel.IdentityNumber && item.Password == signInViewModel.Password)
                         {
-                            return RedirectToAction("Index","Home");
+                            return RedirectToAction("Index","Student");
                         }
                        
                     }

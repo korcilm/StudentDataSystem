@@ -1,4 +1,11 @@
 ﻿@model List<Student>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
 <div class="d-flex flex-column-fluid">
     <!--begin::Container-->
     <div class="container">
@@ -10,7 +17,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                           
+
                             <th scope="col">Kimlik No</th>
                             <th scope="col">Student Number</th>
                             <th scope="col">İsim</th>
@@ -29,36 +36,36 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                           
-                        <tr>
-                            
-                            <td>@item.IdentityNumber</td>
-                            <td>@item.StudentNumber</td>
-                            <td>@item.Name</td>
-                            <td>@item.Surname</td>
-                            <td>@item.Address</td>
-                            <td>@item.PhoneNumber</td>
-                            <td>@item.Email</td>
-                            <td>@item.Department</td>
-                            <td>@item.BloodType</td>
-                            <td>@item.BirthDate.ToShortDateString()</td>
-                            <td>@item.HesCode</td>
-                            <td>
-                                <a asp-controller="Student" asp-action="UpdateStudent" asp-route-id="@item.Id" class="label label-inline label-light-warning font-weight-bold cursor-pointer">
-                                    Düzenle
-                                </a>
-                            </td>
-                            <td>
-                                <a asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@item.Id" class="label label-inline label-light-danger font-weight-bold cursor-pointer">
-                                    Sil
-                                </a>
-                            </td>
-                        </tr>
-                            
+
+                            <tr>
+
+                                <td>@item.IdentityNumber</td>
+                                <td>@item.StudentNumber</td>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.Address</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.Email</td>
+                                <td>@item.Department</td>
+                                <td>@item.BloodType</td>
+                                <td>@item.BirthDate.ToShortDateString()</td>
+                                <td>@item.HesCode</td>
+                                <td>
+                                    <a asp-controller="Student" asp-action="UpdateStudent" asp-route-id="@item.Id" class="label label-inline label-light-warning font-weight-bold cursor-pointer">
+                                        Düzenle
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-controller="Student" asp-action="DeleteStudent" asp-route-id="@item.Id" class="label label-inline label-light-danger font-weight-bold cursor-pointer">
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+
 
                         }
 
-                     
+
                     </tbody>
                 </table>
             </div>

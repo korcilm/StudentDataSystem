@@ -19,5 +19,7 @@ namespace StudentDataSystem.WebUI.Models
         public string BloodType { get; set; }
         public DateTime BirthDate { get; set; }
         public string HesCode { get; set; }
+        public int RoleId { get; set; }=1;
+        public Role Role { get; set; }
     }
 }
